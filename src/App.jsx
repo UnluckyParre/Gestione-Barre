@@ -450,14 +450,14 @@ function App() {
 
                       <input
                         ref={inputRef}
-                        type="text"
-                        inputMode="numeric"
-                        autoComplete="off"
-                        value={editing.qta}
+                        type="number"
+                        value={editing.qta ?? ''}
                         autoFocus
                         onChange={(e) => {
-                          const value = e.target.value.replace(/\D/g, '')
-                          setEditing({ ...editing, qta: value })
+                          setEditing({
+                            ...editing,
+                            qta: e.target.value
+                          })
                         }}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
