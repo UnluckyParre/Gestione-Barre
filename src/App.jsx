@@ -975,7 +975,7 @@ const styles = {
   loginPage: {
     position: 'relative',
     minHeight: '100vh',
-    width: '100%',
+    width: '100vw',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -989,13 +989,14 @@ const styles = {
     width: '100%',
     height: '100%',
     background: `
-      radial-gradient(circle at 20% 30%, rgba(251,191,36,0.15), transparent 40%),
-      radial-gradient(circle at 80% 70%, rgba(59,130,246,0.12), transparent 40%)
+      radial-gradient(circle at 20% 30%, rgba(251,191,36,0.12), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(59,130,246,0.10), transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(148,163,184,0.05), transparent 60%)
     `,
-    filter: 'blur(40px)',
-    transform: 'scale(1.2)',
+    filter: 'blur(60px)',
+    transform: 'scale(1.3)',
     pointerEvents: 'none'
-  },
+  }
 
   loginCard: {
     position: 'relative',
