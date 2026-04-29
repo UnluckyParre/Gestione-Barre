@@ -996,7 +996,7 @@ const styles = {
     filter: 'blur(60px)',
     transform: 'scale(1.3)',
     pointerEvents: 'none'
-  }
+  },
 
   loginCard: {
     position: 'relative',
