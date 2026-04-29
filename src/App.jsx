@@ -450,27 +450,19 @@ function App() {
 
                       <input
                         ref={inputRef}
-                        type="number"
+                        type="text"
                         inputMode="numeric"
-                        pattern="[0-9]*"
+                        autoComplete="off"
                         value={editing.qta}
+                        autoFocus
                         onChange={(e) => {
-                          const value = e.target.value
-
-                          // permette campo vuoto (fondamentale)
-                          if (value === '') {
-                            setEditing({ ...editing, qta: '' })
-                            return
-                          }
-
-                          // accetta solo numeri
-                          if (!/^\d+$/.test(value)) return
-
+                          const value = e.target.value.replace(/\D/g, '')
                           setEditing({ ...editing, qta: value })
                         }}
                         onKeyDown={(e) => {
-                          if (e.key === '-') {
-                            e.preventDefault()
+                          if (e.key === 'Enter') {
+                            movimento(a.id, editing.tipo, Number(editing.qta))
+                            setEditing(null)
                           }
                         }}
                         style={{
@@ -478,8 +470,7 @@ function App() {
                           border: `2px solid ${getEditTheme().border}`,
                           fontSize: 26,
                           fontWeight: 700,
-                          touchAction: 'manipulation',
-                          height: 18
+                          height: 48
                         }}
                       />
 
