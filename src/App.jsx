@@ -1025,7 +1025,7 @@ const styles = {
 
   loginSubtitle: {
     fontSize: 13,
-    color: '#9ca3af'
+    color: 'red'
   },
 
   loginInput: {
