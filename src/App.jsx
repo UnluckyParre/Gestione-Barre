@@ -869,7 +869,7 @@ const styles = {
 
   input: {
     width: 70,
-    padding: '23px 30px',
+    padding: '20px 40px',
     height: 48,
     borderRadius: 8,
     background: '#0b1220',
