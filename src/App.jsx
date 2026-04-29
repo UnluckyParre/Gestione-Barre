@@ -258,471 +258,475 @@ function App() {
 
   return (
     <div style={styles.app}>
+      <div style={styles.pageContent}>
 
-      <div style={styles.header}>
-        <div style={styles.title}>
-          {page === 'storico' ? 'Storico Movimenti' : 'Gestione Barre Intere'}
-        </div>
+        <div style={styles.header}>
+          <div style={styles.title}>
+            {page === 'storico' ? 'Storico Movimenti' : 'Gestione Barre Intere'}
+          </div>
 
-        <div style={styles.nav}>
-          <button
-            onClick={() => setPage('gestione')}
-            style={{
-              ...styles.navBtn,
-              background: page === 'gestione' ? '#1f2937' : '#111a2e',
-              border: page === 'gestione' 
-                ? '2px solid #fbbf24'
-                : '2px solid #24324a',
-              color: page === 'gestione' ? '#fbbf24' : '#e5e7eb',
-              boxShadow: page === 'gestione' ? '0 0 0 1px #fbbf24' : 'none',
-              transform: page === 'gestione' ? 'translateY(-1px)' : 'none',
-              cursor: 'pointer'
-            }}
-          >
-            Gestione
-          </button>
-
-          <button
-            onClick={() => setPage('storico')}
-            style={{
-              ...styles.navBtn,
-              background: page === 'storico' ? '#1f2937' : '#111a2e',
-              border: page === 'storico'
-                ? '2px solid #fbbf24'
-                : '2px solid #24324a',
-              color: page === 'storico' ? '#fbbf24' : '#e5e7eb',
-              boxShadow: page === 'storico' ? '0 0 0 1px #fbbf24' : 'none',
-              transform: page === 'storico' ? 'translateY(-1px)' : 'none',
-              cursor: 'pointer'
-            }}
-          >
-            Storico
-          </button>
-        </div>
-      </div>
-
-      {page === 'gestione' && (
-        <input
-          placeholder="Cerca codice o descrizione..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          style={styles.search}
-        />
-      )}
-
-      {page === 'gestione' && (
-        <div style={styles.list}>
-
-          {filtered.map(a => (
-            <div
-              key={a.id}
+          <div style={styles.nav}>
+            <button
+              onClick={() => setPage('gestione')}
               style={{
-              ...styles.row,
-              borderLeft: a.preferito ? '4px solid #fbbf24' : '1px solid #24324a',
-
-              transform: starAnimId === a.id 
-                ? 'translateY(-4px) scale(1.015)' 
-                : 'translateY(0) scale(1)',
-
-              boxShadow: starAnimId === a.id
-                ? '0 6px 18px rgba(0,0,0,0.25), 0 0 0 1px rgba(251,191,36,0.15)'
-                : 'none',
-
-              animation: starAnimId === a.id 
-                ? 'rowGlow 0.5s ease'
-                : 'none',
-
-              transition: 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
-              zIndex: starAnimId === a.id ? 2 : 1
-            }}
+                ...styles.navBtn,
+                background: page === 'gestione' ? '#1f2937' : '#111a2e',
+                border: page === 'gestione' 
+                  ? '2px solid #fbbf24'
+                  : '2px solid #24324a',
+                color: page === 'gestione' ? '#fbbf24' : '#e5e7eb',
+                boxShadow: page === 'gestione' ? '0 0 0 1px #fbbf24' : 'none',
+                transform: page === 'gestione' ? 'translateY(-1px)' : 'none',
+                cursor: 'pointer'
+              }}
             >
+              Gestione
+            </button>
 
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <button
+              onClick={() => setPage('storico')}
+              style={{
+                ...styles.navBtn,
+                background: page === 'storico' ? '#1f2937' : '#111a2e',
+                border: page === 'storico'
+                  ? '2px solid #fbbf24'
+                  : '2px solid #24324a',
+                color: page === 'storico' ? '#fbbf24' : '#e5e7eb',
+                boxShadow: page === 'storico' ? '0 0 0 1px #fbbf24' : 'none',
+                transform: page === 'storico' ? 'translateY(-1px)' : 'none',
+                cursor: 'pointer'
+              }}
+            >
+              Storico
+            </button>
+          </div>
+        </div>
 
-                {/* STELLINA */}
-                <button
-                  onClick={() => togglePreferito(a.id, a.preferito)}
+        {page === 'gestione' && (
+          <input
+            placeholder="Cerca codice o descrizione..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={styles.search}
+          />
+        )}
+
+        {page === 'gestione' && (
+          <div style={styles.list}>
+
+            {filtered.map(a => (
+              <div
+                key={a.id}
+                style={{
+                ...styles.row,
+                borderLeft: a.preferito ? '4px solid #fbbf24' : '1px solid #24324a',
+
+                transform: starAnimId === a.id 
+                  ? 'translateY(-4px) scale(1.015)' 
+                  : 'translateY(0) scale(1)',
+
+                boxShadow: starAnimId === a.id
+                  ? '0 6px 18px rgba(0,0,0,0.25), 0 0 0 1px rgba(251,191,36,0.15)'
+                  : 'none',
+
+                animation: starAnimId === a.id 
+                  ? 'rowGlow 0.5s ease'
+                  : 'none',
+
+                transition: 'all 0.35s cubic-bezier(0.22, 1, 0.36, 1)',
+                zIndex: starAnimId === a.id ? 2 : 1
+              }}
+              >
+
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+
+                  {/* STELLINA */}
+                  <button
+                    onClick={() => togglePreferito(a.id, a.preferito)}
+                    style={{
+                      ...styles.star,
+                      transform: starAnimId === a.id ? 'scale(1.3)' : 'scale(1)',
+                      transition: 'transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
+                      filter: starAnimId === a.id 
+                        ? 'drop-shadow(0 0 6px rgba(251,191,36,0.6))'
+                        : 'none'
+                    }}
+                  >
+                    {a.preferito ? '★' : '☆'}
+                  </button>
+
+                  {/* BLOCCO CODICE + DESCRIZIONE + LUNGHEZZA */}
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    justifyContent: 'center'
+                  }}>
+
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                      <div style={styles.code}>{a.codice}</div>
+
+                      {a.lunghezza && (
+                        <span style={styles.lengthTag}>
+                          {a.lunghezza} mt
+                        </span>
+                      )}
+                    </div>
+
+                    <div style={styles.desc}>{a.descrizione}</div>
+
+                  </div>
+
+                </div>
+                </div>
+
+                <div
                   style={{
-                    ...styles.star,
-                    transform: starAnimId === a.id ? 'scale(1.3)' : 'scale(1)',
-                    transition: 'transform 0.25s cubic-bezier(0.22, 1, 0.36, 1)',
-                    filter: starAnimId === a.id 
-                      ? 'drop-shadow(0 0 6px rgba(251,191,36,0.6))'
-                      : 'none'
+                    ...styles.stock,
+                    animation:
+                      errorStockId === a.id
+                        ? 'shake 0.4s ease'
+                        : stockAnimId ? 'pop 0.25s ease' : 'none',
+                    transition: 'all 0.2s ease',
+                    color: errorStockId === a.id ? '#ef4444' : '#e5e7eb'
                   }}
                 >
-                  {a.preferito ? '★' : '☆'}
-                </button>
-
-                {/* BLOCCO CODICE + DESCRIZIONE + LUNGHEZZA */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start',
-                  justifyContent: 'center'
-                }}>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <div style={styles.code}>{a.codice}</div>
-
-                    {a.lunghezza && (
-                      <span style={styles.lengthTag}>
-                        {a.lunghezza} mt
-                      </span>
-                    )}
+                  <div style={{ fontSize: 11, fontWeight: 400, opacity: 0.5}}>
+                    Disponibili
                   </div>
-
-                  <div style={styles.desc}>{a.descrizione}</div>
-
-                </div>
-
-              </div>
-              </div>
-
-              <div
-                style={{
-                  ...styles.stock,
-                  animation:
-                    errorStockId === a.id
-                      ? 'shake 0.4s ease'
-                      : stockAnimId ? 'pop 0.25s ease' : 'none',
-                  transition: 'all 0.2s ease',
-                  color: errorStockId === a.id ? '#ef4444' : '#e5e7eb'
-                }}
-              >
-                <div style={{ fontSize: 11, fontWeight: 400, opacity: 0.5}}>
-                  Disponibili
-                </div>
-                <div style={{ fontSize: 23, fontWeight: 700 }}>
-                  {getStock(a.id)}
-                </div>
-              </div>
-
-              <div style={styles.actions}>
-
-                {editing?.id !== a.id && (
-                  <>
-                    <button
-                      style={{
-                        ...styles.carico,
-                        fontSize: 16,
-                        padding: '14px 18px',
-                        transition: 'transform 0.15s ease',
-                        transform: 'scale(1)',
-                        cursor: 'pointer'
-                      }}
-                      onClick={() => setEditing({ id: a.id, tipo: 'carico', qta: '' })}
-                    >
-                      CARICO
-                    </button>
-
-                    <button
-                      style={{
-                        ...styles.scarico,
-                        fontSize: 16,
-                        padding: '14px 18px',
-                        opacity: getStock(a.id) === 0 ? 0.35 : 1,
-                        filter: getStock(a.id) === 0 ? 'grayscale(30%)' : 'none',
-                        cursor: getStock(a.id) === 0 ? 'not-allowed' : 'pointer',
-                        transition: 'transform 0.15s ease',
-                        transform: 'scale(1)',
-                      }}
-                      onClick={() => {
-                        if (getStock(a.id) === 0) return
-                        setEditing({ id: a.id, tipo: 'scarico', qta: '' })
-                      }}
-                    >
-                      SCARICO
-                    </button>
-                  </>
-                )}
-
-                {editing?.id === a.id && (
-                  <div
-                    style={{
-                      ...styles.inlineEdit,
-                      minWidth: 170,
-                      justifyContent: 'flex-end'
-                    }}
-                  >
-
-                    <input
-                      ref={inputRef}
-                      type="number"
-                      inputMode="numeric"
-                      pattern="[0-9]*"
-                      value={editing.qta}
-                      onChange={(e) => {
-                        const value = e.target.value
-
-                        // permette campo vuoto (fondamentale)
-                        if (value === '') {
-                          setEditing({ ...editing, qta: '' })
-                          return
-                        }
-
-                        // accetta solo numeri
-                        if (!/^\d+$/.test(value)) return
-
-                        setEditing({ ...editing, qta: value })
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === '-') {
-                          e.preventDefault()
-                        }
-                      }}
-                      style={{
-                        ...styles.input,
-                        border: `2px solid ${getEditTheme().border}`,
-                        fontSize: 26,
-                        fontWeight: 700,
-                        touchAction: 'manipulation',
-                        height: 18
-                      }}
-                    />
-
-                    <button
-                      onClick={() => {
-                        movimento(a.id, editing.tipo, Number(editing.qta))
-                        setEditing(null)
-                      }}
-                      style={{
-                        ...styles.ok,
-                        background: getEditTheme().ok,
-                        fontSize: 18,
-                        padding: '10px 18px',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      ✔
-                    </button>
-
-                    <button
-                      onClick={() => setEditing(null)}
-                      style={{
-                        ...styles.cancel,
-                        fontSize: 18,
-                        padding: '10px 18px',
-                        cursor: 'pointer'
-                      }}
-                    >
-                      ✖
-                    </button>
-
+                  <div style={{ fontSize: 23, fontWeight: 700 }}>
+                    {getStock(a.id)}
                   </div>
-                )}
+                </div>
+
+                <div style={styles.actions}>
+
+                  {editing?.id !== a.id && (
+                    <>
+                      <button
+                        style={{
+                          ...styles.carico,
+                          fontSize: 16,
+                          padding: '14px 18px',
+                          transition: 'transform 0.15s ease',
+                          transform: 'scale(1)',
+                          cursor: 'pointer'
+                        }}
+                        onClick={() => setEditing({ id: a.id, tipo: 'carico', qta: '' })}
+                      >
+                        CARICO
+                      </button>
+
+                      <button
+                        style={{
+                          ...styles.scarico,
+                          fontSize: 16,
+                          padding: '14px 18px',
+                          opacity: getStock(a.id) === 0 ? 0.35 : 1,
+                          filter: getStock(a.id) === 0 ? 'grayscale(30%)' : 'none',
+                          cursor: getStock(a.id) === 0 ? 'not-allowed' : 'pointer',
+                          transition: 'transform 0.15s ease',
+                          transform: 'scale(1)',
+                        }}
+                        onClick={() => {
+                          if (getStock(a.id) === 0) return
+                          setEditing({ id: a.id, tipo: 'scarico', qta: '' })
+                        }}
+                      >
+                        SCARICO
+                      </button>
+                    </>
+                  )}
+
+                  {editing?.id === a.id && (
+                    <div
+                      style={{
+                        ...styles.inlineEdit,
+                        minWidth: 170,
+                        justifyContent: 'flex-end'
+                      }}
+                    >
+
+                      <input
+                        ref={inputRef}
+                        type="number"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        value={editing.qta}
+                        onChange={(e) => {
+                          const value = e.target.value
+
+                          // permette campo vuoto (fondamentale)
+                          if (value === '') {
+                            setEditing({ ...editing, qta: '' })
+                            return
+                          }
+
+                          // accetta solo numeri
+                          if (!/^\d+$/.test(value)) return
+
+                          setEditing({ ...editing, qta: value })
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === '-') {
+                            e.preventDefault()
+                          }
+                        }}
+                        style={{
+                          ...styles.input,
+                          border: `2px solid ${getEditTheme().border}`,
+                          fontSize: 26,
+                          fontWeight: 700,
+                          touchAction: 'manipulation',
+                          height: 18
+                        }}
+                      />
+
+                      <button
+                        onClick={() => {
+                          movimento(a.id, editing.tipo, Number(editing.qta))
+                          setEditing(null)
+                        }}
+                        style={{
+                          ...styles.ok,
+                          background: getEditTheme().ok,
+                          fontSize: 18,
+                          padding: '10px 18px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ✔
+                      </button>
+
+                      <button
+                        onClick={() => setEditing(null)}
+                        style={{
+                          ...styles.cancel,
+                          fontSize: 18,
+                          padding: '10px 18px',
+                          cursor: 'pointer'
+                        }}
+                      >
+                        ✖
+                      </button>
+
+                    </div>
+                  )}
+
+                </div>
 
               </div>
-
-            </div>
-          ))}
-
-        </div>
-      )}
-
-      {page === 'storico' && (
-        <div style={styles.history}>
-
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 10,
-            marginBottom: 15
-          }}>
-
-            {/* SEARCH */}
-            <input
-              placeholder="Cerca codice o descrizione..."
-              value={searchStorico}
-              onChange={(e) => setSearchStorico(e.target.value)}
-              style={{
-                ...styles.search,
-                marginBottom: 0
-              }}
-            />
-
-            {/* FILTRI ERP ROW */}
-            <div style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              gap: 12,
-              flexWrap: 'nowrap',
-              overflowX: 'auto'
-            }}>
-
-              {/* LEFT: CARICO / SCARICO */}
-              <div style={{
-                display: 'flex',
-                gap: 10,
-                flexShrink: 0
-              }}>
-                {['tutti', 'carico', 'scarico'].map(tipo => (
-                  <button
-                    key={tipo}
-                    onClick={() => setFiltroTipo(tipo)}
-                    style={{
-                      ...styles.chip,
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0,
-                      background: filtroTipo === tipo ? '#1f2937' : '#111a2e',
-                      color: filtroTipo === tipo ? '#fbbf24' : '#e5e7eb',
-                      border: filtroTipo === tipo 
-                        ? '2px solid #fbbf24'
-                        : '2px solid #24324a'
-                    }}
-                  >
-                    {tipo.toUpperCase()}
-                  </button>
-                ))}
-              </div>
-
-              {/* RIGHT: PERIODO */}
-              <div style={{
-                display: 'flex',
-                gap: 10,
-                flexShrink: 0
-              }}>
-                {[
-                  { key: 'tutti', label: 'Sempre' },
-                  { key: 'oggi', label: 'Oggi' },
-                  { key: 'settimana', label: '7 giorni' }
-                ].map(p => (
-                  <button
-                    key={p.key}
-                    onClick={() => setFiltroPeriodo(p.key)}
-                    style={{
-                      ...styles.chip,
-                      whiteSpace: 'nowrap',
-                      flexShrink: 0,
-                      background: filtroPeriodo === p.key ? '#1f2937' : '#111a2e',
-                      color: filtroPeriodo === p.key ? '#fbbf24' : '#e5e7eb',
-                      border: filtroPeriodo === p.key 
-                        ? '2px solid #fbbf24' 
-                        : '2px solid #24324a'
-                    }}
-                  >
-                    {p.label}
-                  </button>
-                ))}
-              </div>
-
-            </div>
+            ))}
 
           </div>
-          
-          {movimenti
-            .filter(m => {
-              const art = articoli.find(a => a.id === m.articolo_id)
+        )}
 
-              const matchTesto =
-                art?.codice.toLowerCase().includes(searchStorico.toLowerCase()) ||
-                art?.descrizione.toLowerCase().includes(searchStorico.toLowerCase())
+        {page === 'storico' && (
+          <div style={styles.history}>
 
-              const matchTipo =
-                filtroTipo === 'tutti' || m.tipo === filtroTipo
+            <div style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 10,
+              marginBottom: 15
+            }}>
 
-              const data = new Date(m.created_at)
+              {/* SEARCH */}
+              <input
+                placeholder="Cerca codice o descrizione..."
+                value={searchStorico}
+                onChange={(e) => setSearchStorico(e.target.value)}
+                style={{
+                  ...styles.search,
+                  marginBottom: 0
+                }}
+              />
 
-              const oggi = new Date()
-              const startOggi = new Date()
-              startOggi.setHours(0,0,0,0)
+              {/* FILTRI ERP ROW */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                gap: 12,
+                flexWrap: 'nowrap',
+                overflowX: 'auto'
+              }}>
 
-              const inizioSettimana = new Date()
-              inizioSettimana.setDate(inizioSettimana.getDate() - 7)
+                {/* LEFT: CARICO / SCARICO */}
+                <div style={{
+                  display: 'flex',
+                  gap: 10,
+                  flexShrink: 0
+                }}>
+                  {['tutti', 'carico', 'scarico'].map(tipo => (
+                    <button
+                      key={tipo}
+                      onClick={() => setFiltroTipo(tipo)}
+                      style={{
+                        ...styles.chip,
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                        background: filtroTipo === tipo ? '#1f2937' : '#111a2e',
+                        color: filtroTipo === tipo ? '#fbbf24' : '#e5e7eb',
+                        border: filtroTipo === tipo 
+                          ? '2px solid #fbbf24'
+                          : '2px solid #24324a'
+                      }}
+                    >
+                      {tipo.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
 
-              let matchPeriodo = true
+                {/* RIGHT: PERIODO */}
+                <div style={{
+                  display: 'flex',
+                  gap: 10,
+                  flexShrink: 0
+                }}>
+                  {[
+                    { key: 'tutti', label: 'Sempre' },
+                    { key: 'oggi', label: 'Oggi' },
+                    { key: 'settimana', label: '7 giorni' }
+                  ].map(p => (
+                    <button
+                      key={p.key}
+                      onClick={() => setFiltroPeriodo(p.key)}
+                      style={{
+                        ...styles.chip,
+                        whiteSpace: 'nowrap',
+                        flexShrink: 0,
+                        background: filtroPeriodo === p.key ? '#1f2937' : '#111a2e',
+                        color: filtroPeriodo === p.key ? '#fbbf24' : '#e5e7eb',
+                        border: filtroPeriodo === p.key 
+                          ? '2px solid #fbbf24' 
+                          : '2px solid #24324a'
+                      }}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
 
-              if (filtroPeriodo === 'oggi') {
-                matchPeriodo = data >= startOggi
-              }
+              </div>
 
-              if (filtroPeriodo === 'settimana') {
-                matchPeriodo = data >= inizioSettimana
-              }
+            </div>
+            
+            {movimenti
+              .filter(m => {
+                const art = articoli.find(a => a.id === m.articolo_id)
 
-              return matchTesto && matchTipo && matchPeriodo
-            })
-            .sort((a, b) => b.id - a.id)
-            .map(m => {
-              const art = articoli.find(a => a.id === m.articolo_id)
+                const matchTesto =
+                  art?.codice.toLowerCase().includes(searchStorico.toLowerCase()) ||
+                  art?.descrizione.toLowerCase().includes(searchStorico.toLowerCase())
 
-              return (
-                <div
-                  key={m.id}
-                  style={{
-                    ...styles.historyRow,
-                    borderLeft: m.tipo === 'carico'
-                      ? '4px solid #22c55e'
-                      : '4px solid #ef4444',
-                    alignItems: 'center'
-                  }}
-                >
-                  <div style={{ display: 'flex', flexDirection: 'column' }}>
-  
-                    <div style={{ fontWeight: 700, fontSize: 19 }}>
-                      {art?.codice}
-                    </div>
+                const matchTipo =
+                  filtroTipo === 'tutti' || m.tipo === filtroTipo
 
-                    <div style={{ fontSize: 11, opacity: 0.5, marginTop: 2 }}>
-                      {art?.descrizione}
-                    </div>
+                const data = new Date(m.created_at)
 
-                  </div>
-                  
+                const oggi = new Date()
+                const startOggi = new Date()
+                startOggi.setHours(0,0,0,0)
+
+                const inizioSettimana = new Date()
+                inizioSettimana.setDate(inizioSettimana.getDate() - 7)
+
+                let matchPeriodo = true
+
+                if (filtroPeriodo === 'oggi') {
+                  matchPeriodo = data >= startOggi
+                }
+
+                if (filtroPeriodo === 'settimana') {
+                  matchPeriodo = data >= inizioSettimana
+                }
+
+                return matchTesto && matchTipo && matchPeriodo
+              })
+              .sort((a, b) => b.id - a.id)
+              .map(m => {
+                const art = articoli.find(a => a.id === m.articolo_id)
+
+                return (
                   <div
+                    key={m.id}
                     style={{
-                      color: m.tipo === 'carico' ? '#22c55e' : '#ef4444',
-                      fontWeight: 700,
-                      textTransform: 'uppercase',
-                      fontSize: 20,
-                      letterSpacing: 0.5
+                      ...styles.historyRow,
+                      borderLeft: m.tipo === 'carico'
+                        ? '4px solid #22c55e'
+                        : '4px solid #ef4444',
+                      alignItems: 'center'
                     }}
                   >
-                    {m.tipo}
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    
+                      <div style={{ fontWeight: 700, fontSize: 19 }}>
+                        {art?.codice}
+                      </div>
+
+                      <div style={{ fontSize: 11, opacity: 0.5, marginTop: 2, textAlign: 'center' }}>
+                        {art?.descrizione}
+                      </div>
+
+                    </div>
+                    
+                    <div
+                      style={{
+                        color: m.tipo === 'carico' ? '#22c55e' : '#ef4444',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        fontSize: 20,
+                        letterSpacing: 0.5,
+                        textAlign: 'center'
+                      }}
+                    >
+                      {m.tipo}
+                    </div>
+
+                    <div style={{ fontWeight: 700, fontSize: 20, textAlign: 'center' }}>
+                      {m.tipo === 'scarico' ? '-' : '+'}{m.quantita}
+                    </div>
+
+                    <div style={{ opacity: 0.6, fontSize: 12, textAlign: 'center' }}>
+                      {m.created_at
+                        ? new Date(m.created_at).toLocaleString('it-IT')
+                        : ''}
+                    </div>
                   </div>
+                )
+              })}
+          </div>
+        )}
 
-                  <div style={{ fontWeight: 700, fontSize: 20 }}>
-                    {m.tipo === 'scarico' ? '-' : '+'}{m.quantita}
-                  </div>
+        <style>
+          {`
+          @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-4px); }
+            50% { transform: translateX(4px); }
+            75% { transform: translateX(-4px); }
+            100% { transform: translateX(0); }
+          }
+          
+          @keyframes pop {
+            0% { transform: scale(1); }
+            40% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+          }
 
-                  <div style={{ opacity: 0.6, fontSize: 12 }}>
-                    {m.created_at
-                      ? new Date(m.created_at).toLocaleString('it-IT')
-                      : ''}
-                  </div>
-                </div>
-              )
-            })}
-        </div>
-      )}
+          @keyframes rowGlow {
+            0% { background: #111a2e; }
+            30% { background: rgba(251, 191, 36, 0.08); }
+            60% { background: rgba(251, 191, 36, 0.04); }
+            100% { background: #111a2e; }
+          }
+          `}
+        </style>
 
-      <style>
-        {`
-        @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-4px); }
-          50% { transform: translateX(4px); }
-          75% { transform: translateX(-4px); }
-          100% { transform: translateX(0); }
-        }
-        
-        @keyframes pop {
-          0% { transform: scale(1); }
-          40% { transform: scale(1.15); }
-          100% { transform: scale(1); }
-        }
-
-        @keyframes rowGlow {
-          0% { background: #111a2e; }
-          30% { background: rgba(251, 191, 36, 0.08); }
-          60% { background: rgba(251, 191, 36, 0.04); }
-          100% { background: #111a2e; }
-        }
-        `}
-      </style>
-
+      </div>
     </div>
+
   )
 }
 
@@ -733,6 +737,13 @@ const styles = {
     padding: 20,
     color: '#e5e7eb',
     fontFamily: 'system-ui'
+  },
+
+  pageContent: {
+    width: 'min(1126px, calc(100% - 40px))',
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column'
   },
 
   header: {
@@ -900,12 +911,15 @@ const styles = {
 
   historyRow: {
     display: 'grid',
-    gridTemplateColumns: '2fr 1fr 1fr 2fr',
+    gridTemplateColumns: '1.7fr 1fr 1fr 1.7fr',
+    gap: 12,
     background: '#0f172a',
     padding: 12,
     borderRadius: 10,
     border: '1px solid #24324a',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyItems: 'center',
+    textAlign: 'center'
   },
 
   filtersBar: {
