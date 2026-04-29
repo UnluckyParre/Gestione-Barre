@@ -50,10 +50,6 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-}
-
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -61,6 +57,10 @@ html, body, #root {
   height: 100%;
   background: #0b1220;
   overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {

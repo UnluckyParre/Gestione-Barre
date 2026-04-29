@@ -975,6 +975,7 @@ const styles = {
   loginPage: {
     position: 'relative',
     minHeight: '100vh',
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -985,12 +986,15 @@ const styles = {
   loginBg: {
     position: 'absolute',
     inset: 0,
+    width: '100%',
+    height: '100%',
     background: `
       radial-gradient(circle at 20% 30%, rgba(251,191,36,0.15), transparent 40%),
       radial-gradient(circle at 80% 70%, rgba(59,130,246,0.12), transparent 40%)
     `,
     filter: 'blur(40px)',
-    transform: 'scale(1.2)'
+    transform: 'scale(1.2)',
+    pointerEvents: 'none'
   },
 
   loginCard: {
