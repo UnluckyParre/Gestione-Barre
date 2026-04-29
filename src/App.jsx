@@ -450,14 +450,14 @@ function App() {
 
                       <input
                         ref={inputRef}
-                        type="number"
-                        value={editing.qta ?? ''}
+                        type="text"
+                        inputMode="numeric"
+                        autoComplete="off"
+                        value={editing.qta}
                         autoFocus
                         onChange={(e) => {
-                          setEditing({
-                            ...editing,
-                            qta: e.target.value
-                          })
+                          const value = e.target.value.replace(/\D/g, '')
+                          setEditing({ ...editing, qta: value })
                         }}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
@@ -466,11 +466,21 @@ function App() {
                           }
                         }}
                         style={{
-                          ...styles.input,
+                          width: 110,
+                          height: 48,
+                          padding: '0 12px',
+                          borderRadius: 8,
                           border: `2px solid ${getEditTheme().border}`,
-                          fontSize: 26,
+                          background: '#0b1220',
+                          color: '#ffffff',
+                          WebkitTextFillColor: '#ffffff',
+                          caretColor: '#ffffff',
+                          outline: '2px solid transparent',
+                          fontSize: 22,
                           fontWeight: 700,
-                          height: 48
+                          textAlign: 'center',
+                          boxSizing: 'border-box',
+                          lineHeight: '48px'
                         }}
                       />
 
@@ -860,7 +870,6 @@ const styles = {
 
   input: {
     width: 70,
-    padding: '20px 40px',
     height: 48,
     borderRadius: 8,
     background: '#0b1220',
